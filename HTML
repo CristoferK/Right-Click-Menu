@@ -1,0 +1,90 @@
+<!DOCTYPE>
+<head>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/007b767ad0.js" crossorigin="anonymous"></script>
+
+<style>
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+#contex-menu {
+	position: fixed;
+	z-index: 9000;
+	width: 150px;
+	background: white;
+	box-shadow: 0px 0px 20px blue;
+	transform: scale(0);
+	transform-origin: top left;
+}
+#contex-menu.active {
+	transform: scale(1);
+	transition: transform 200ms ease-in-out;
+}
+#contex-menu .item {
+	padding: 8px 10px;
+	font-size: 15px;
+	color: blue;
+}
+#contex-menu .item:hover {
+	background: blue;
+	color: white;
+}
+#contex-menu .item i {
+	display: inline-block;
+	margin-right: 5px;
+}
+#contex-menu hr {
+	margin: 2px 0px;
+	border-color: blue;
+}
+</style>
+</head>
+<body>
+<div id="contex-menu">
+<div class="item">
+<i class="fa fa-cut"></i>Cut
+</div>
+<div class="item">
+<i class="fa fa-clone"></i>Copy
+</div>
+<div class="item">
+<i class="fa fa-paste"></i>Paste
+</div>
+<div class="item">
+<i class="fa fa-trash-o"></i>Delete
+</div>
+<hr>
+<div class="item">
+Rename
+</div>
+<div class="item">
+Open
+</div>
+<div class="item">
+New Folder
+</div>
+<div class="item">
+Help
+</div>
+
+</div>
+<script>
+window.addEventListener("contextmenu", function(event){
+event.preventDefault();
+var contextElement = document.getElementById("contex-menu");
+contextElement.style.top = event.offsetY + "px";
+contextElement.style.left = event.offsetX + "px";
+
+contextElement.classList.add("active");
+});
+
+window.addEventListener("click", function(){
+document.getElementById("contex-menu").classList.remove("active");
+});
+</script>
+</body>
+</html>
